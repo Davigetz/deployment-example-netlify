@@ -2,24 +2,11 @@ const { prisma } = require("../prisma/prismagnral");
 
 exports.handler = async (event, context, callback) => {
   try {
-    const posts = await prisma.post.findMany({
-      include: {
-        postauthor: {
-          include: {
-            author: true,
-          },
-        },
-        postCategory: {
-          include: {
-            category: true,
-          },
-        },
-      },
-    });
+    const categories = await prisma.category.findMany({});
     return {
       statusCode: 200,
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(posts),
+      body: JSON.stringify(categories),
     };
   } catch (error) {
     console.error(error);

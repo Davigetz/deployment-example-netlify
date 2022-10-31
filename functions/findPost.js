@@ -1,8 +1,10 @@
 const { prisma } = require("../prisma/prismagnral");
 
 exports.handler = async (event, context, callback) => {
+  const slug = event.queryStringParameters && event.queryStringParameters.slug;
   try {
-    const posts = await prisma.post.findMany({
+    const post = await prisma.post.findMany({
+      where: { slug: { equals: slug } },
       include: {
         postauthor: {
           include: {
@@ -16,6 +18,9 @@ exports.handler = async (event, context, callback) => {
         },
       },
     });
+    if (post.lenght === 0) {
+      throw new Error("No se encontro");
+    }
     return {
       statusCode: 200,
       headers: { "Content-Type": "application/json" },
@@ -24,7 +29,7 @@ exports.handler = async (event, context, callback) => {
   } catch (error) {
     console.error(error);
     return {
-      statusCode: 500,
+      statusCode: 404,
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(error),
     };

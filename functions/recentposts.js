@@ -2,13 +2,12 @@ const { prisma } = require("../prisma/prismagnral");
 
 exports.handler = async (event, context, callback) => {
   try {
-    const posts = await prisma.post.findMany({
+    const recent = await prisma.post.findMany({
+      take: 3,
+      orderBy: {
+        addedAt: "asc",
+      },
       include: {
-        postauthor: {
-          include: {
-            author: true,
-          },
-        },
         postCategory: {
           include: {
             category: true,
@@ -19,12 +18,12 @@ exports.handler = async (event, context, callback) => {
     return {
       statusCode: 200,
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(posts),
+      body: JSON.stringify(recent),
     };
   } catch (error) {
     console.error(error);
     return {
-      statusCode: 500,
+      statusCode: 404,
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(error),
     };

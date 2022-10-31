@@ -1,78 +1,62 @@
-const { PrismaClient } = require('@prisma/client')
-const prisma = new PrismaClient()
+const { PrismaClient } = require("@prisma/client");
+const prisma = new PrismaClient();
 
 exports.handler = async (event, context, callback) => {
   try {
-    await Promise.all([prisma.profile.deleteMany(), prisma.post.deleteMany()])
-    await prisma.user.deleteMany()
+    await Promise.all([
+      prisma.category.deleteMany(),
+      prisma.post.deleteMany(),
+      prisma.comment.deleteMany(),
+    ]);
+    await prisma.author.deleteMany();
 
-    const createdUser = await prisma.user.create({
-      data: seedUser
-    })
-
-    const createdUser2 = await prisma.user.create({
-      data: seedUser2
-    })
+    const post = await prisma.post.create({
+      data: {
+        title: "Pets Care",
+        slug: "Pets",
+        excerpt:
+          "The importance of pets needs best food's in market for that reason with look for...",
+        content:
+          "We love Pets as we love more we invest more in them. So what is the suplement than need more. Let's talk about it right now.",
+        featureImage:
+          "https://res.cloudinary.com/davigetz/image/upload/v1665636494/IMG_20221012_151644_yoxpay.jpg",
+        featurePot: true,
+      },
+    });
+    const category = await prisma.category.create({
+      data: {
+        name: "Dogs",
+        slug: "Pets",
+      },
+    });
+    const author = await prisma.author.create({
+      data: {
+        name: "David",
+        bio: "I am a person with many desires and few time",
+        photo:
+          "https://res.cloudinary.com/davigetz/image/upload/v1664422240/ul4xxlmrshjes4pz0zdt.jpg",
+      },
+    });
+    await prisma.postauthor.create({
+      data: {
+        postId: post.id,
+        authorId: author.id,
+      },
+    });
+    await prisma.postCategory.create({
+      data: {
+        postId: post.id,
+        cateogryId: category.id,
+      },
+    });
 
     return {
       statusCode: 201,
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify([createdUser, createdUser2])
-    }
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify([author, post]),
+    };
   } catch (error) {
-    console.error(error)
-    return { statusCode: 500 }
+    console.error(error);
+    return { statusCode: 500 };
   }
-}
-
-const seedUser = {
-  email: 'jane@prisma.io',
-  name: 'Jane',
-  profile: {
-    create: {
-      bio: 'Health Enthusiast',
-    },
-  },
-  posts: {
-    create: [
-      {
-        title: 'Comparing Database Types: How Database Types Evolved to Meet Different Needs',
-        content: 'https://www.prisma.io/blog/comparison-of-database-models-1iz9u29nwn37/',
-      },
-      {
-        title: 'Analysing Sleep Patterns: The Quantified Self',
-        content: 'https://quantifiedself.com/get-started/',
-      },
-      {
-        title: 'Prisma 2 Docs',
-        content: 'https://www.prisma.io/docs/',
-      },
-    ],
-  },
-}
-
-const seedUser2 = {
-  email: 'toru@prisma.io',
-  name: 'Toru Takemitsu',
-  profile: {
-    create: {
-      bio: 'Musician',
-    },
-  },
-  posts: {
-    create: [
-      {
-        title: 'Requiem for String Orchestra',
-        content: '',
-      },
-      {
-        title: 'Music of Tree',
-        content: '',
-      },
-      {
-        title: 'Waves for clarinet, horn, two trombones and bass drum ',
-        content: '',
-      },
-    ],
-  },
-}
+};
