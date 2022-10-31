@@ -16,6 +16,7 @@ exports.handler = async (event, context, callback) => {
         },
       },
     });
+    console.log(posts);
     return {
       statusCode: 200,
       headers: { "Content-Type": "application/json" },
