@@ -1,4 +1,5 @@
-const { prisma } = require("../prisma/prismagnral");
+const { PrismaClient } = require("@prisma/client");
+const prisma = new PrismaClient();
 
 exports.handler = async (event, context, callback) => {
   try {
@@ -16,7 +17,6 @@ exports.handler = async (event, context, callback) => {
         },
       },
     });
-    console.log(posts);
     return {
       statusCode: 200,
       headers: { "Content-Type": "application/json" },
