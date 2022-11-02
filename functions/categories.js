@@ -1,4 +1,4 @@
-const { prisma } = require("../prisma/prismagnral");
+const { prisma } = require("../prisma/prismageneral");
 
 exports.handler = async (event, context, callback) => {
   try {

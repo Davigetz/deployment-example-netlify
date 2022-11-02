@@ -1,4 +1,5 @@
-const { prisma } = require("../prisma/prismagnral");
+const { PrismaClient } = require("@prisma/client");
+const prisma = new PrismaClient();
 
 exports.handler = async (event, context, callback) => {
   const slug = event.queryStringParameters && event.queryStringParameters.slug;
