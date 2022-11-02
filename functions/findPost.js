@@ -25,7 +25,7 @@ exports.handler = async (event, context, callback) => {
     return {
       statusCode: 200,
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(posts),
+      body: JSON.stringify(post),
     };
   } catch (error) {
     console.error(error);
