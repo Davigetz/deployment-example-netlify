@@ -6,7 +6,10 @@ exports.handler = async (event, context, callback) => {
     const categories = await prisma.category.findMany({});
     return {
       statusCode: 200,
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "http://localhost:3000",
+      },
       body: JSON.stringify(categories),
     };
   } catch (error) {
