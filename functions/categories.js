@@ -8,7 +8,7 @@ exports.handler = async (event, context, callback) => {
       statusCode: 200,
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "http://localhost:3000",
+        "Access-Control-Allow-Origin": "https://dgblog-five.vercel.app",
       },
       body: JSON.stringify(categories),
     };
