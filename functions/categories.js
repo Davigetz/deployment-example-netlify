@@ -8,7 +8,7 @@ exports.handler = async (event, context, callback) => {
       statusCode: 200,
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": event("ORIGIN"),
+        "Access-Control-Allow-Origin": env("ORIGIN"),
       },
       body: JSON.stringify(categories),
     };
