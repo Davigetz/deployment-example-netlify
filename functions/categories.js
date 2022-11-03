@@ -10,7 +10,7 @@ exports.handler = async (event, context, callback) => {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": [
           "https://dgblog-five.vercel.app",
-          "www.dgblogme.com",
+          "https://www.dgblogme.com/",
         ],
       },
       body: JSON.stringify(categories),
