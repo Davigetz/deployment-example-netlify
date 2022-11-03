@@ -4,12 +4,11 @@ const prisma = new PrismaClient();
 exports.handler = async (event, context, callback) => {
   try {
     const categories = await prisma.category.findMany({});
-    const origin = env("ORIGIN");
     return {
       statusCode: 200,
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": origin,
+        "Access-Control-Allow-Origin": "https://www.dgblogme.com/",
       },
       body: JSON.stringify(categories),
     };
