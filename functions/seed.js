@@ -3,12 +3,12 @@ const prisma = new PrismaClient();
 
 exports.handler = async (event, context, callback) => {
   try {
-    // await Promise.all([
-    //   prisma.category.deleteMany(),
-    //   prisma.post.deleteMany(),
-    //   prisma.comment.deleteMany(),
-    // ]);
-    // await prisma.author.deleteMany();
+    await Promise.all([
+      prisma.category.deleteMany(),
+      prisma.post.deleteMany(),
+      prisma.comment.deleteMany(),
+    ]);
+    await prisma.author.deleteMany();
 
     const post = await prisma.post.create({
       data: {
