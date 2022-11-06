@@ -21,6 +21,7 @@ exports.handler = async (event, context, callback) => {
         featureImage:
           "https://res.cloudinary.com/davigetz/image/upload/v1665636494/IMG_20221012_151644_yoxpay.jpg",
         featurePot: true,
+        priority: 0.6,
       },
     });
     const category = await prisma.category.create({
