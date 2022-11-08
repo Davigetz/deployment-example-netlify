@@ -18,8 +18,14 @@ exports.handler = async (event, context, callback) => {
           "Muchas veces nos preguntamos si podemos enseñar a nuestra adorada mascota a hacer sus necesidads como un gato, SI se puede",
         content:
           "Cuando se trata del entrenamiento de una mascota es importante realizarlo con responsabilidad, ya sea que queremos evitar incidentes que pueden ser dificiles. Afortunamente aca le mostramos un plan de entrenamiento para que su mascota pueda hacer sus necesidades en casa.",
-        content2:
-          "Hay 6 tipoes de baños para perros en casa Toallas higienicas, pasto en casa, estaciones auto limpiables, cajas para perro, Baño para perro con rejillas",
+        content2: "Hay 6 tipos de baños para perros en casa:",
+        lista: [
+          "Toallas higienicas",
+          "Pasto de baño para perro",
+          "Estaciones auto Limpiables",
+          "Caja de Baño para Perro",
+          "Baño para perro con Rejillas",
+        ],
         content3:
           "Si te interesa como realizar este entrenamiento hazmelo saber en los comentarios y con ello dare información mas detallada de como llevar el entrenamiento acabo",
         featureImage:
@@ -30,8 +36,8 @@ exports.handler = async (event, context, callback) => {
     });
     const category = await prisma.category.create({
       data: {
-        name: "Dogs",
-        slug: "Pets",
+        name: "Perros",
+        slug: "Puede-mi-perro-aprender-a-usar-la-caja-de-arena-para-gatos",
       },
     });
     const author = await prisma.author.create({

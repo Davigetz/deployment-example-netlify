@@ -47,6 +47,7 @@ model Post {
   content      String
   content2     String?
   content3     String?
+  lista        String[]
   featureImage String
   featurePot   Boolean
   postauthor   Postauthor[]
