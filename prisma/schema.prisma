@@ -45,6 +45,8 @@ model Post {
   slug         String         @unique
   excerpt      String
   content      String
+  content2     String?
+  content3     String?
   featureImage String
   featurePot   Boolean
   postauthor   Postauthor[]

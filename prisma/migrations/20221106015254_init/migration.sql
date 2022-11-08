@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "post" ALTER COLUMN "priority" SET DATA TYPE DOUBLE PRECISION;
