@@ -12,7 +12,7 @@ exports.handler = async (event, context, callback) => {
 
     const post = await prisma.post.create({
       data: {
-        title: "¿Puede-mi-Perro-Aprender-a-Usar-la-Caja de Arena para Gatos?",
+        title: "¿Puede mi Perro Aprender a Usar la Caja de Arena para Gatos?",
         slug: "Puede-mi-perro-aprender-a-usar-la-caja-de-arena-para-gatos",
         excerpt:
           "Muchas veces nos preguntamos si podemos enseñar a nuestra adorada mascota a hacer sus necesidads como un gato, SI se puede",
