@@ -50,6 +50,7 @@ model Post {
   lista        String[]
   featureImage String
   featurePot   Boolean
+  newsLink     String[]
   postauthor   Postauthor[]
   postCategory PostCategory[]
   priority     Float
